@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  webapplication:
+    image: pugacha/webapplication:2.0
+    ports:
+      - "5555:80"
+    deploy:
+      replicas: 3
+      update_config:
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3

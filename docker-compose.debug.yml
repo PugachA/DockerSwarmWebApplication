@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  webapplication:
+    build:
+      context: .
+      dockerfile: WebApplication/Dockerfile
