@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
+#HEALTHCHECK CMD exit 1
 EXPOSE 80
 EXPOSE 443
 
@@ -19,4 +20,5 @@ RUN dotnet publish "WebApplication.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "WebApplication.dll"]

@@ -2,15 +2,20 @@ version: '3.7'
 
 services:
   webapplication:
-    image: pugacha/webapplication:2.0
+    image: pugacha/webapplication:5.4
     ports:
       - "5555:80"
+    healthcheck:
+      test: curl --fail http://localhost:80/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
     deploy:
       replicas: 3
       update_config:
         order: start-first
         failure_action: rollback
-        delay: 10s
+        delay: 5s
       rollback_config:
         order: stop-first
       restart_policy:

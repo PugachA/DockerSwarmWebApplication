@@ -21,6 +21,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<string> Get()
         {
+            //await Task.Delay(60000);
             return $"Hello wolrd from Docker Container: {Environment.MachineName}";
             //return Environment.MachineName;
         }
